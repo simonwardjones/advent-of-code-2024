@@ -62,7 +62,7 @@ func part1(data []string) int {
 
 	var validCount int
 	for _, report := range reports {
-		if checkReport(report) {
+		if report.check() {
 			validCount++
 		}
 	}
@@ -77,7 +77,7 @@ const (
 	Down
 )
 
-func checkReport(report Report) bool {
+func (report Report) check() bool {
 	var direction Direction = Unset
 	for i := 1; i < len(report); i++ {
 		difference := report[i] - report[i-1]
@@ -111,22 +111,22 @@ func part2(data []string) int {
 
 	var validCount int
 	for _, report := range reports {
-		if isValidWithPermutations(report) {
+		if report.isValidWithPermutations() {
 			validCount++
 		}
 	}
 	return validCount
 }
 
-func isValidWithPermutations(report Report) bool {
-	if checkReport(report) {
+func (report Report) isValidWithPermutations() bool {
+	if report.check() {
 		return true
 	}
 	for i := range report {
 		perm := make(Report, len(report)-1)
 		copy(perm, report[:i])
 		copy(perm[i:], report[i+1:])
-		if checkReport(perm) {
+		if perm.check() {
 			return true
 		}
 	}
