@@ -32,6 +32,8 @@ func main() {
 
 	part2Result := part2(data)
 	fmt.Println("Part 2:", part2Result)
+
+	// iteratorExample()
 }
 
 func findProductsSum(data []string, allPairs bool) int {
@@ -92,3 +94,35 @@ func loadInput(fileName string) []string {
 	}
 	return data
 }
+
+// type House struct {
+// 	rooms []string
+// }
+
+// func (house House) bedrooms(yield func(string) bool) {
+// 	for _, room := range house.rooms {
+// 		if strings.Contains(room, "bedroom") {
+// 			if !yield(room) {
+// 				return
+// 			}
+// 		}
+// 	}
+// }
+
+// func iteratorExample() {
+
+// 	var simonsHouse House = House{rooms: []string{"bedroom 1", "kitchen", "office", "bedroom 2"}}
+
+// 	for _, room := range simonsHouse.rooms {
+// 		fmt.Println(room)
+// 	}
+// 	for bedroom := range simonsHouse.bedrooms {
+// 		fmt.Println(bedroom)
+// 	}
+// 	// Equivalent to:
+// 	// simonsHouse.bedrooms(func(room string) bool{
+// 	// 	fmt.Println(room)
+// 	// 	return true
+// 	// })
+
+// }
