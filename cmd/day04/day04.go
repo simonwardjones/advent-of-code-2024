@@ -8,7 +8,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"reflect"
 	"runtime"
 )
 
@@ -89,27 +88,12 @@ func part1(data []string) int {
 }
 
 func checkForXMask(data []string, row, col int, M, N int) bool {
-	if data[row][col] != 'A' {
+	if data[row][col] != 'A' || row < 1 || row > N-2 || col < 1 || col > M-2 {
 		return false
 	}
-	if row < 1 || row > N-2 || col < 1 || col > M-2 {
-		return false
-	}
-	TL := []int{row - 1, col - 1}
-	TR := []int{row - 1, col + 1}
-	BL := []int{row + 1, col - 1}
-	BR := []int{row + 1, col + 1}
-	// create a set with data from tl and br
-	var expected = map[rune]bool{'M': true, 'S': true}
-	var tl_br = map[rune]bool{
-		rune(data[TL[0]][TL[1]]): true,
-		rune(data[BR[0]][BR[1]]): true,
-	}
-	var tr_bl = map[rune]bool{
-		rune(data[TR[0]][TR[1]]): true,
-		rune(data[BL[0]][BL[1]]): true,
-	}
-	if reflect.DeepEqual(expected, tl_br) && reflect.DeepEqual(expected, tr_bl) {
+	tl_br := string(data[row-1][col-1]) + string(data[row+1][col+1])
+	tr_bl := string(data[row-1][col+1]) + string(data[row+1][col-1])
+	if (tl_br == "MS" || tl_br == "SM") && (tr_bl == "MS" || tr_bl == "SM") {
 		return true
 	}
 	return false
