@@ -50,7 +50,7 @@ func part1(data []string) int {
 		}
 	}
 	total := 0
-	// sum anitnodes in map
+	// sum antinodes in map
 	n, m := len(data), len(data[0])
 	for node := range antinodes {
 		if node[0] >= 0 && node[0] < n && node[1] >= 0 && node[1] < m {
