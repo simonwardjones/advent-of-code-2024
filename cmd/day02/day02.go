@@ -1,5 +1,3 @@
-// Day 1 advent of code 2020
-
 package main
 
 import (
