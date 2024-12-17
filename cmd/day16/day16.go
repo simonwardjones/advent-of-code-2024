@@ -60,7 +60,7 @@ func getMinScore(grid map[P]rune, start, end P) (int, int) {
 			neighbor := P{current.pos.y + dir.y, current.pos.x + dir.x}
 			if val := grid[neighbor]; val != '#' {
 				newScore := current.score + 1
-				if dir != current.dir || current.dir == (P{0, 0}) {
+				if dir != current.dir {
 					newScore += 1000
 				}
 				newRoute := append([]P{}, current.route...)
